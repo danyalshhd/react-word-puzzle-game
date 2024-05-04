@@ -1,8 +1,13 @@
 # Word Puzzle Game
+![trie](https://github.com/utku-guclu/react-word-puzzle-game/assets/34550887/6b3ea090-03cd-4bad-a8c1-750c09e09585)
 
 ## Description
 
 The Word Puzzle Game is a simple educational game designed to demonstrate the Trie algorithm. It challenges players to find words hidden within a grid of letters. The game utilizes the Trie data structure and its search method to check if the submitted words exist in the grid. The game aims to provide an educational experience while offering an enjoyable puzzle-solving activity.
+
+## Examples
+![ex2](https://github.com/utku-guclu/react-word-puzzle-game/assets/34550887/53887c2e-bac1-4663-a582-863883146adb)
+![ex1](https://github.com/utku-guclu/react-word-puzzle-game/assets/34550887/42ba488e-1622-4298-a8f4-c79123f94213)
 
 ## Features
 
