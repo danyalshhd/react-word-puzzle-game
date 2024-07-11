@@ -71,6 +71,15 @@
   background-color: lightgreen; /* Change background color when revealed */
 }
 
-table, th, td {
+thead > tr {
+  font-weight: bold;
+}
+
+table, td, thead, tr {
   border: 1px solid;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
 }

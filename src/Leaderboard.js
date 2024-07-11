@@ -8,7 +8,7 @@ const Leaderboard = ({user}) => {
     const [leaderboard, setLeaderboard] = useState([]);
     // Initialize Trie when component mounts
     useEffect(() => {
-        debugger
+        
         const request = () =>
             
             PuzzleService.getLeaderboard(user)
@@ -24,19 +24,25 @@ const Leaderboard = ({user}) => {
     return (
         <div className="container">
             <table>
+            <thead>
                 <tr>
                     <td>Name</td>
                     <td>Score</td>
+                    <td>Time Taken</td>
                 </tr>
-
-{JSON.stringify(leaderboard)}
-                {leaderboard && leaderboard.map(lead => {
-                    <tr>
-                        <td>Name: {lead.user}</td>
-                        <td>Score: {lead.score}</td>
-                        <td>Time taken: {lead.timeFinished}</td>
+            </thead>
+            <tbody>
+                {leaderboard && leaderboard.map((lead, key) => {
+                    return (
+                        <tr key={key}>
+                            <td>{lead.user}</td>
+                            <td>{lead.score}</td>
+                            <td>{lead.timeFinished}</td>
                     </tr>
+                    )
+                    
                 })}
+                </tbody>
             </table>
             
         </div>
