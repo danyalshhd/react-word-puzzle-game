@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost/api'
+const baseUrl = 'http://134.122.93.127/api'
 
 const getPuzzle = async (id) => {
   const response = await axios.get(`${baseUrl}/generate-puzzle`)
