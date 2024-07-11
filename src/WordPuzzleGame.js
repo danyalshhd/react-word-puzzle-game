@@ -130,7 +130,7 @@ const WordPuzzleGame = () => {
     <div className="container">
       {!leaderboard ? 
       <div>
-        <Col>
+        
           <div style={{ textAlign: 'center' }}>
           
             <div style={{ fontSize: '40px' }}>
@@ -139,8 +139,7 @@ const WordPuzzleGame = () => {
             
             <button onClick={reset}>Reset</button>
           </div>
-        </Col>
-        <Col>
+        
           <h1 className="title">Word Puzzle Game</h1>
 
           <form onSubmit={handleSubmit} className="form">
@@ -165,7 +164,7 @@ const WordPuzzleGame = () => {
           {isValidWord && <p className="message">Valid word!</p>}
           {!isValidWord && input && <p className="message">Not a valid word.</p>}
           {renderGrid()}
-        </Col>
+        
       </div>
       :
       <div className="container">
