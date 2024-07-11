@@ -1,29 +1,43 @@
 import React, { useState, useEffect } from "react";
 import Trie from "./Trie";
 import "./WordPuzzleGame.css"; // Import CSS file for styling
+import PuzzleService from './services/puzzle';
 
 const WordPuzzleGame = () => {
   const [input, setInput] = useState("");
+  const [name, setName] = useState("");
   const [isValidWord, setIsValidWord] = useState(false);
   const [foundWords, setFoundWords] = useState([]);
   const [revealedLetters, setRevealedLetters] = useState(Array(26).fill(false)); // Array to store revealed state for each letter
   const [trie, setTrie] = useState(new Trie()); // Initialize Trie state
   const [words, setWords] = useState([
-    "react",
-    "javascript",
-    "computer",
-    "science",
+   'way'
   ]);
+  const [alreadyRan, setAlreadyRan] = useState(false);
 
   // Initialize Trie when component mounts
   useEffect(() => {
-    initializeTrie();
+    initializeTrie(words);
+
+    const request = () =>
+      //ProductsTemperatureDefinitions.forEach((product) => {
+      PuzzleService.getPuzzle()
+        .then((response) => {
+          setWords((prevItems) => ([  
+            ...prevItems,
+            ...response,
+          ]))
+          initializeTrie(response)
+          setAlreadyRan(true);
+        });
+
+    request();
   }, []);
 
   // Function to initialize Trie with sample words
-  const initializeTrie = () => {
+  const initializeTrie = (response) => {
     const newTrie = new Trie();
-    words.forEach((word) => newTrie.insert(word));
+    response.forEach((word) => newTrie.insert(word));
     setTrie(newTrie);
   };
 
@@ -31,7 +45,12 @@ const WordPuzzleGame = () => {
     setInput(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  }
+
+  const handleSubmit = async (e) => {
+    debugger
     e.preventDefault();
     const isFound = trie.search(input.toLowerCase());
     if (isFound) {
@@ -39,6 +58,11 @@ const WordPuzzleGame = () => {
       setIsValidWord(true);
       setFoundWords((prev) => [...prev, input]);
       setInput("");
+      setName("")
+      await PuzzleService.create({
+        user: name,
+        timeFinished: new Date()
+      });
     } else {
       setIsValidWord(false);
     }
@@ -61,16 +85,15 @@ const WordPuzzleGame = () => {
             {word.split("").map((letter, idx) => (
               <div
                 key={idx}
-                className={`grid-item ${
-                  foundWords.includes(word) ||
-                  revealedLetters[letter.charCodeAt(0) - "a".charCodeAt(0)]
+                className={`grid-item ${foundWords.includes(word) ||
+                    revealedLetters[letter.charCodeAt(0) - "a".charCodeAt(0)]
                     ? "revealed"
                     : ""
-                }`}
+                  }`}
                 onClick={() => revealLetter(letter)}
               >
                 {foundWords.includes(word) ||
-                revealedLetters[letter.charCodeAt(0) - "a".charCodeAt(0)]
+                  revealedLetters[letter.charCodeAt(0) - "a".charCodeAt(0)]
                   ? letter
                   : ""}
               </div>
@@ -83,8 +106,18 @@ const WordPuzzleGame = () => {
 
   return (
     <div className="container">
+      
       <h1 className="title">Word Puzzle Game</h1>
+      
       <form onSubmit={handleSubmit} className="form">
+      <h3 className="title">Enter Your Email</h3>
+        <input 
+          type="text"
+          value={name}
+          onChange={handleNameChange}
+          className="input"
+        />
+        <h3 className="title">Enter Your Word</h3>
         <input
           type="text"
           value={input}
