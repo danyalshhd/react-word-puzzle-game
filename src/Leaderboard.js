@@ -13,6 +13,7 @@ const Leaderboard = ({user}) => {
             
             PuzzleService.getLeaderboard(user)
                 .then((response) => {
+                    console.log(JSON.stringify(response));
                     setLeaderboard((prevItems) => ([
                         ...prevItems,
                         ...response,
