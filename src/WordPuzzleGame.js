@@ -73,7 +73,6 @@ const WordPuzzleGame = () => {
       setIsValidWord(true);
       setFoundWords((prev) => [...prev, input]);
       setInput("");
-      setName("")
       let date = new Date();
       date.setSeconds(seconds);
       await PuzzleService.create({
@@ -82,6 +81,7 @@ const WordPuzzleGame = () => {
       });
       reset();
       setLeaderboard(true);
+      setName("")
     } else {
       setIsValidWord(false);
     }
@@ -166,7 +166,7 @@ const WordPuzzleGame = () => {
       </div>
       :
       <div className="container">
-        <Leaderboard />
+        <Leaderboard user={name}/>
         <div>
           <button onClick={startGame}>Start Over</button>
         </div>

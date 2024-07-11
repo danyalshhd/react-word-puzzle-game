@@ -3,15 +3,15 @@ import "./WordPuzzleGame.css"; // Import CSS file for styling
 import PuzzleService from './services/puzzle';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const Leaderboard = () => {
+const Leaderboard = ({user}) => {
 
     const [leaderboard, setLeaderboard] = useState([]);
     // Initialize Trie when component mounts
     useEffect(() => {
 
         const request = () =>
-            //ProductsTemperatureDefinitions.forEach((product) => {
-            PuzzleService.getLeaderboard()
+            
+            PuzzleService.getLeaderboard(user)
                 .then((response) => {
                     setLeaderboard((prevItems) => ([
                         ...prevItems,

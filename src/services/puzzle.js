@@ -11,8 +11,8 @@ const create = async (data) => {
   await axios.post(`${baseUrl}/puzzle`, data);
 }
 
-const getLeaderboard = async () => {
-  const response = await axios.get(`${baseUrl}/show-results`)
+const getLeaderboard = async (user) => {
+  const response = await axios.get(`${baseUrl}/show-results/${user}`)
   return response.data;
 }
 
