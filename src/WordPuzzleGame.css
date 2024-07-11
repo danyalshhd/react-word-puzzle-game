@@ -70,3 +70,7 @@
 .grid-item.revealed {
   background-color: lightgreen; /* Change background color when revealed */
 }
+
+table, th, td {
+  border: 1px solid;
+}

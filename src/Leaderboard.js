@@ -13,7 +13,6 @@ const Leaderboard = ({user}) => {
             
             PuzzleService.getLeaderboard(user)
                 .then((response) => {
-                    console.log(JSON.stringify(response));
                     setLeaderboard((prevItems) => ([
                         ...prevItems,
                         ...response,
@@ -30,8 +29,8 @@ const Leaderboard = ({user}) => {
                     <td>Score</td>
                 </tr>
 
-
-                {leaderboard.map(lead => {
+{JSON.stringify(leaderboard)}
+                {leaderboard && leaderboard.map(lead => {
                     <tr>
                         <td>Name: {lead.user}</td>
                         <td>Score: {lead.score}</td>
