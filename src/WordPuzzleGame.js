@@ -61,6 +61,10 @@ const WordPuzzleGame = () => {
     setName(e.target.value);
   }
 
+  const startGame = () => {
+    setLeaderboard(!leaderboard);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isFound = trie.search(input.toLowerCase());
@@ -163,6 +167,9 @@ const WordPuzzleGame = () => {
       :
       <div className="container">
         <Leaderboard />
+        <div>
+          <button onClick={startGame}>Start Over</button>
+        </div>
       </div>
       }
     </div>
