@@ -8,7 +8,7 @@ const Leaderboard = ({user}) => {
     const [leaderboard, setLeaderboard] = useState([]);
     // Initialize Trie when component mounts
     useEffect(() => {
-
+        debugger
         const request = () =>
             
             PuzzleService.getLeaderboard(user)

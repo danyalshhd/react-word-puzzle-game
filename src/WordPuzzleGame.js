@@ -81,7 +81,10 @@ const WordPuzzleGame = () => {
       });
       reset();
       setLeaderboard(true);
-      setName("")
+      setTimeout(()=> {
+        setName("")
+      }, 1000)
+      
     } else {
       setIsValidWord(false);
     }
